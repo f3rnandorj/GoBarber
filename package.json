@@ -1,0 +1,18 @@
+{
+  "name": "modulo02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "routes": "^2.1.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "dev:debug": "nodemon --inspect src/server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "sucrase": "^3.24.0"
+  }
+}
