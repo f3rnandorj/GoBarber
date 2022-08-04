@@ -1,6 +1,6 @@
-import {Model} from 'sequelize';
+import Sequelize, {Model} from 'sequelize';
 
-class user extends Model {
+class User extends Model {
   static init(sequelize) {
     super.init (
       {                                  // so entram as que o usuario preenche
@@ -16,4 +16,4 @@ class user extends Model {
   }
 }
 
-export default user;
+export default User;
