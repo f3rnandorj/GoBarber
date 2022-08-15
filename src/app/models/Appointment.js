@@ -16,7 +16,7 @@ class File extends Model {
 
   }
 
-  static associate (models) {
+  static associate (models) {             //relacionamento entre tabelas
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
     this.belongsTo(models.User, { foreignKey: 'provider_id', as: 'provider' });
   }

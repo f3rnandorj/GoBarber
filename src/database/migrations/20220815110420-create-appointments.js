@@ -9,12 +9,12 @@ module.exports = {
         primaryKey: true,
       },
 
-      date: {
+      date: {                            //data do agendamento
         type: Sequelize.DATE,
         allowNull: false,
       },
 
-      user_id: {
+      user_id: {                        //referencia do usuario que vai agendar o sv
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
@@ -22,7 +22,7 @@ module.exports = {
         allowNull: true,
       },
 
-      provider_id: {
+      provider_id: {                   //referencia do provedor que vai atuar com o sv
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
@@ -47,6 +47,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('files');
+    return queryInterface.dropTable('appointments');
   }
 };
