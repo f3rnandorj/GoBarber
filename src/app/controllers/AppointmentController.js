@@ -7,12 +7,16 @@ import Appointment from '../models/Appointment';
 
 class AppointmentController {
   async index(req, res) {
+    const { page = 1 } = req.query;
+
     const appointments = await Appointment.findAll({
       where: { user_id: req.userId, canceled_at: null },
       order: ['date'],
       attributes: ['id', 'date'],
+      limit: 10,                    //paginação de appointments
+      offset: (page - 1) * 10,
       include: [
-        {
+        {                           // separação do que deve ser exibido ou não
           model: User,
           as: 'provider',
           attributes: ['id', 'name'],
