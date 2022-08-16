@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class File extends Model {
+class Appointment extends Model {
   static init(sequelize) {
     super.init (
       {                                  // so entram as que o usuario preenche
@@ -22,4 +22,4 @@ class File extends Model {
   }
 }
 
-export default File;
+export default Appointment;

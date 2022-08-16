@@ -20,6 +20,7 @@ class AppointmentController {
     /*
     * check if provider_id is a provider
     */
+
    const isProvider = await User.findOne({
      where: { id: provider_id, provider: true },
     });
@@ -30,7 +31,13 @@ class AppointmentController {
     .json({ error: 'You can only create appointments with providers' });
    }
 
-    return res.json();
+    const appointment = await Appointment.create({
+      user_id: req.userId,
+      provider_id,
+      date,
+    });
+
+    return res.json(appointment);
   }
 }
 
