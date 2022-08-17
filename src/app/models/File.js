@@ -1,9 +1,10 @@
-import Sequelize, {Model} from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
 class File extends Model {
   static init(sequelize) {
-    super.init (
-      {                                  // so entram as que o usuario preenche
+    super.init(
+      {
+        // so entram as que o usuario preenche
         name: Sequelize.STRING,
         path: Sequelize.STRING,
         url: {
@@ -19,7 +20,6 @@ class File extends Model {
     );
 
     return this;
-
   }
 }
 

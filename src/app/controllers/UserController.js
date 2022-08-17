@@ -1,4 +1,4 @@
-//toda parte de usuario...Create, update.
+// toda parte de usuario...Create, update.
 import * as Yup from 'yup';
 import User from '../models/User';
 
@@ -53,7 +53,7 @@ class UserController {
 
     const user = await User.findByPk(req.userId);
 
-    if (email && email != user.email) {
+    if (email && email !== user.email) {
       const userExists = await User.findOne({ where: { email } });
 
       if (userExists) {

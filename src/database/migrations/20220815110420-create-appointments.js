@@ -1,7 +1,6 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('appointments', {
-
+  up: (queryInterface, Sequelize) =>
+    queryInterface.createTable('appointments', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -9,12 +8,14 @@ module.exports = {
         primaryKey: true,
       },
 
-      date: {                            //data do agendamento
+      date: {
+        // data do agendamento
         type: Sequelize.DATE,
         allowNull: false,
       },
 
-      user_id: {                        //referencia do usuario que vai agendar o sv
+      user_id: {
+        // referencia do usuario que vai agendar o sv
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
@@ -22,7 +23,8 @@ module.exports = {
         allowNull: true,
       },
 
-      provider_id: {                   //referencia do provedor que vai atuar com o sv
+      provider_id: {
+        // referencia do provedor que vai atuar com o sv
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
@@ -42,11 +44,8 @@ module.exports = {
       updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
-      }
-    });
-  },
+      },
+    }),
 
-  down: queryInterface => {
-    return queryInterface.dropTable('appointments');
-  }
+  down: (queryInterface) => queryInterface.dropTable('appointments'),
 };
