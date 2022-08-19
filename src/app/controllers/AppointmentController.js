@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { startOfHour, parseISO, isBefore, format } from 'date-fns'; // importando partes seletas do date-fns
+import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns'; // importando partes seletas do date-fns
 import pt from 'date-fns/locale/pt'; // importando portugues pro date-fns
 import User from '../models/User';
 import File from '../models/File';
@@ -33,7 +33,6 @@ class AppointmentController {
         },
       ],
     });
-
     return res.json(appointments);
   }
 
@@ -48,6 +47,7 @@ class AppointmentController {
     }
 
     const { provider_id, date } = req.body;
+    const { userId } = req; // desestruturação
 
     /*
      * check if provider_id is a provider
@@ -66,7 +66,7 @@ class AppointmentController {
     /*
      * Check for past dates
      */
-    if (provider_id === req.userId) {
+    if (provider_id === userId) {
       return res.status(401).json({ error: "This action isn't permited" });
     }
 
@@ -116,6 +116,30 @@ class AppointmentController {
       content: `Novo agendamento de ${user.name} para o dia ${formattedDate}`,
       user: provider_id,
     });
+
+    return res.json(appointment);
+  }
+
+  async delete(req, res) {
+    const appointment = await Appointment.findByPk(req.params.id);
+
+    if (appointment.user_id !== req.userId) {
+      return res.status(400).json({
+        error: "You don't have permission to delete this appointment.",
+      });
+    }
+
+    const dateWithSub = subHours(appointment.date, 2);
+
+    if (isBefore(dateWithSub, new Date())) {
+      return res.status(401).json({
+        error: 'You can only cancel appointments before 2 hours of your time.',
+      });
+    }
+
+    appointment.canceled_at = new Date();
+
+    await appointment.save();
 
     return res.json(appointment);
   }
