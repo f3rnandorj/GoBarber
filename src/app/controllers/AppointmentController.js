@@ -66,6 +66,13 @@ class AppointmentController {
     /*
      * Check for past dates
      */
+    if (provider_id === req.userId) {
+      return res.status(401).json({ error: "This action isn't permited" });
+    }
+
+    /*
+     * Check for past dates
+     */
     const hourStart = startOfHour(parseISO(date));
 
     if (isBefore(hourStart, new Date())) {
