@@ -36,10 +36,6 @@ Após iniciar o Back-End, rode as aplicações, seja web ou mobile, e as utilize
 
 Uma vez que se trata de um aplicação completa, é necessário que a parcela referente ao Back-End esteja operando concomitantemente às parcelas do Front-End.
 
-### `Demonstração`
-
-![GIF](https://i.imgur.com/dXn8rT3.gif)
-
 ------------------------------------------------------------------
 
 Qualquer dúvida entre em contato por <a href="mailto:f3rnandorj10@gmail.com?">f3rnandorj10@gmail.com</a>
